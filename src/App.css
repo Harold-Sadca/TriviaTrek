@@ -3,3 +3,26 @@
   --secondary-colour: #6B7B8A;
   --tertiary-colour: #FFD700;
 }
+
+.btn-submit {
+  padding: 10px;
+  font-size: 20px;
+  color: var(--tertiary-colour);
+  font-weight: bold;
+  width: 10rem;
+  height: 3rem;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  background-color: var(--secondary-colour);
+  transition: 0.5s;
+}
+
+.btn-submit:hover {
+  color: var(--accent-color);
+  background-color: transparent;
+  border:1px solid var(--accent-color);
+  box-shadow: 0 0 15px var(--tertiary-colour);
+  transition: 0.5s;
+  border-radius: 15px;
+}
