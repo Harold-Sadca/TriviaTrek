@@ -33,8 +33,13 @@ export const numOfQuestions = {
   50: 50,
 };
 
-export const difficulty = {
+export const difficultyLevel = {
   easy: "easy",
   medium: "medium",
   hard: "hard",
+};
+
+export const quizTypes = {
+  "multiple choice": "multiple",
+  "true or false": "boolean",
 };
