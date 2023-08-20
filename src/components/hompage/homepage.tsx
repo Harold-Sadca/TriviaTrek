@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import '../../App.css'
-import './index.css'
+import './homepage.css'
 
 function Homepage() {
 
