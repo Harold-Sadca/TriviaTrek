@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Homepage from '../hompage/Homepage';
+import Homepage from '../homepage/Homepage';
 import Quizzes from '../select-quizzes/SelectQuizzes';
 import StartQuiz from '../start-quiz/StartQuiz';
 import QuizSummary from '../quiz-summary/QuizSummary';
