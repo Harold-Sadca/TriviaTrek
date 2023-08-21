@@ -2,7 +2,7 @@
 
 Welcome to Trivia Trek, a quiz app that challenges your knowledge across various categories! Test your wits and have fun with a wide range of trivia questions.
 
-The App can be found: https://triviatrek.netlify.app/home
+The App can be found: https://triviatrek.netlify.app/
 
 ## Features
 
