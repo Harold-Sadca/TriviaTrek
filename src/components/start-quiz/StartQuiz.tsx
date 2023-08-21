@@ -1,33 +1,47 @@
-// import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { combineAnswers, extractQuestions } from '../../utils/functions';
 import { MouseEvent, useState } from 'react';
+import { setQuizzes } from '../../redux/features/quizzesSlice';
 import he from 'he';
 import '../../App.css';
 import './startQuiz.css';
 
 function StartQuiz() {
-  const quizzes = useSelector((state: RootState) => state.quizzesReducer.value);
+  let quizzes = useSelector((state: RootState) => state.quizzesReducer.value);
   const questionsObject = extractQuestions(quizzes);
-  // const navigate = useNavigate();
   const [answersState, setAnswersState] = useState(questionsObject);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    console.log('clicked');
+    quizzes = quizzes.map((quiz) => {
+      if (quiz.correct_answer === answersState[quiz.question]) {
+        return {
+          ...quiz,
+          answered_correctly: true,
+        };
+      } else {
+        return {
+          ...quiz,
+          answered_correctly: false,
+        };
+      }
+    });
+    dispatch(setQuizzes(quizzes));
+    navigate('/check-answers');
   };
 
   const handleChange = (
     e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>,
-    state: string
+    question: string
   ) => {
     const target = e.target as HTMLInputElement;
-    console.log(target);
-    setAnswersState({
-      ...answersState,
-      [state]: target.value,
-    });
-    console.log(answersState, target.value);
+    setAnswersState((prevState: object) => ({
+      ...prevState,
+      [question]: target.value,
+    }));
   };
 
   return (

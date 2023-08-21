@@ -12,4 +12,5 @@ export interface TypeQuestion {
   incorrect_answers: string[];
   question: string;
   type: string;
+  answered_correctly?: boolean;
 }
