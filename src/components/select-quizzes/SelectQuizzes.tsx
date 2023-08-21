@@ -59,11 +59,6 @@ function Quizzes() {
     navigate('/start-quiz');
   };
 
-  // const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   console.log(selected);
-  // };
-
   return (
     <div className='container'>
       <h1>Select Your Quiz</h1>
