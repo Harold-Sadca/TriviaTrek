@@ -1,0 +1,36 @@
+.questions {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  overflow-y: scroll;
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  height: 18rem;
+  padding: 2rem 0;
+}
+
+.answers {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-content: space-evenly;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.quizzes-container {
+  height: 98vh;
+}
+
+@media screen and (max-width: 1000px) {
+  .question {
+    height: auto;
+  }
+}

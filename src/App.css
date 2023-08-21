@@ -19,9 +19,9 @@
 }
 
 .btn-submit:hover {
-  color: var(--accent-color);
+  color: var(--secondary-color);
   background-color: transparent;
-  border:1px solid var(--accent-color);
+  border:1px solid var(--secondary-color);
   box-shadow: 0 0 15px var(--tertiary-colour);
   transition: 0.5s;
   border-radius: 15px;
@@ -36,10 +36,27 @@
   align-items: center;
   justify-content: center;
   min-height: 80vh;
-  /* color: var(--secondary-colour); */
-  /* color: var(--tertiary-colour); */
 }
 
 h1{
   color: var(--tertiary-colour)
+}
+
+.btn-2 {
+  color: var(--tertiary-colour);
+  background-color: transparent;
+  font-weight: 500;
+  letter-spacing: 4px;
+  font-family: sans-serif;
+  text-decoration: none;
+  border: 1px solid var(--tertiary-colour);
+  border-radius: 5px;
+  height: 3rem;
+  width: 10rem;
+}
+
+.btn-2:hover {
+  background: var(--secondary-colour);
+  color: var(--secondary-color);
+  border: none;
 }

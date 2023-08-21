@@ -34,6 +34,14 @@
   width: 0.1em;
 }
 
+@media screen and (max-width: 1400px) {
+  .quiz-form {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
 /* .options::-webkit-scrollbar {
   width: 10px;
   background-color: #f1f1f1;

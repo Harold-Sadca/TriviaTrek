@@ -1,28 +1,31 @@
 // import React, { FormEvent } from 'react';
-import { useNavigate } from "react-router-dom";
-import { FormEvent } from "react";
-import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { FormEvent } from 'react';
+import { useState } from 'react';
 import {
   categories,
   numOfQuestions,
   difficultyLevel,
   quizTypes,
-} from "../../utils/variables";
-import { TypeQuiz } from "../../utils/types";
-import "../../App.css";
-import "./quizzes.css";
-import { getQuizzes } from "../../utils/apiService";
+} from '../../utils/variables';
+import { TypeQuiz } from '../../utils/types';
+import '../../App.css';
+import './quizzes.css';
+import { getQuizzes } from '../../utils/apiService';
+import { useDispatch } from 'react-redux';
+import { setQuizzes } from '../../redux/features/quizzesSlice';
 
 const initialState: TypeQuiz = {
   amount: 0,
   category: 0,
-  difficulty: "",
-  type: "",
+  difficulty: '',
+  type: '',
 };
 
 function Quizzes() {
   const [selected, setSelected] = useState<TypeQuiz>(initialState);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e: FormEvent<HTMLDivElement>, state: string) => {
     const target = e.target as HTMLInputElement;
@@ -35,14 +38,15 @@ function Quizzes() {
 
   const handleSubmit = async () => {
     const amount = selected.amount ? selected.amount : 10;
-    const category = selected.category ? "&category=" + selected.category : "";
+    const category = selected.category ? '&category=' + selected.category : '';
     const difficulty = selected.difficulty
-      ? "&difficulty=" + selected.difficulty
-      : "";
-    const type = selected.type ? "&type=" + selected.type : "";
+      ? '&difficulty=' + selected.difficulty
+      : '';
+    const type = selected.type ? '&type=' + selected.type : '';
     const url = `https://opentdb.com/api.php?amount=${amount}${category}${difficulty}${type}`;
     const quizzes = await getQuizzes(url);
-    console.log(quizzes);
+    dispatch(setQuizzes(quizzes));
+    navigate('/start-quiz');
   };
 
   // const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -51,23 +55,23 @@ function Quizzes() {
   // };
 
   return (
-    <div className="container">
+    <div className='container'>
       <h1>Select Your Quiz</h1>
-      <form className="quiz-form">
+      <form className='quiz-form'>
         <div>
           <h2>Category</h2>
           <div
-            className="options"
+            className='options'
             onChange={(e) => {
-              handleChange(e, "category");
+              handleChange(e, 'category');
             }}
           >
             {Object.entries(categories).map((category) => {
               return (
-                <div className="option" key={category[0]}>
+                <div className='option' key={category[0]}>
                   <input
-                    className="radio"
-                    type="radio"
+                    className='radio'
+                    type='radio'
                     name={category[0]}
                     value={category[1]}
                     id={category[0]}
@@ -81,13 +85,13 @@ function Quizzes() {
         </div>
         <div>
           <h2>Number Of Questions</h2>
-          <div className="options" onChange={(e) => handleChange(e, "amount")}>
+          <div className='options' onChange={(e) => handleChange(e, 'amount')}>
             {Object.entries(numOfQuestions).map((numberOfQuestion) => {
               return (
-                <div className="option" key={numberOfQuestion[0]}>
+                <div className='option' key={numberOfQuestion[0]}>
                   <input
-                    className="radio"
-                    type="radio"
+                    className='radio'
+                    type='radio'
                     name={numberOfQuestion[0]}
                     value={numberOfQuestion[1]}
                     id={numberOfQuestion[0]}
@@ -104,15 +108,15 @@ function Quizzes() {
         <div>
           <h2>Difficulty Level</h2>
           <div
-            className="options"
-            onChange={(e) => handleChange(e, "difficulty")}
+            className='options'
+            onChange={(e) => handleChange(e, 'difficulty')}
           >
             {Object.entries(difficultyLevel).map((difficulty) => {
               return (
-                <div className="option" key={difficulty[0]}>
+                <div className='option' key={difficulty[0]}>
                   <input
-                    className="radio"
-                    type="radio"
+                    className='radio'
+                    type='radio'
                     name={difficulty[0]}
                     value={difficulty[1]}
                     id={difficulty[0]}
@@ -126,13 +130,13 @@ function Quizzes() {
         </div>
         <div>
           <h2>Type Of Quiz</h2>
-          <div className="options" onChange={(e) => handleChange(e, "type")}>
+          <div className='options' onChange={(e) => handleChange(e, 'type')}>
             {Object.entries(quizTypes).map((quizType) => {
               return (
-                <div className="option" key={quizType[0]}>
+                <div className='option' key={quizType[0]}>
                   <input
-                    className="radio"
-                    type="radio"
+                    className='radio'
+                    type='radio'
                     name={quizType[0]}
                     value={quizType[1]}
                     id={quizType[0]}
@@ -145,7 +149,7 @@ function Quizzes() {
           </div>
         </div>
       </form>
-      <button className="btn-submit" onClick={handleSubmit}>
+      <button className='btn-submit' onClick={handleSubmit}>
         Start Quiz
       </button>
     </div>
