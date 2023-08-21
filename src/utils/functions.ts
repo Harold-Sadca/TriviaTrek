@@ -11,3 +11,13 @@ export const combineAnswers = (answer: string, arr: string[]) => {
   const combinedAnswers = shuffleAnswers(newArr);
   return combinedAnswers;
 };
+
+export const extractQuestions = (questions: object) => {
+  const questionsOnly = Object.values(questions).map((item) => ({
+    [`${item.question}`]: '',
+  }));
+
+  const questionsObject = Object.assign({}, ...questionsOnly);
+
+  return questionsObject;
+};

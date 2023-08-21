@@ -60,3 +60,9 @@ h1{
   color: var(--secondary-color);
   border: none;
 }
+
+.btn-2-clicked {
+  background: var(--secondary-colour);
+  color: var(--tertiary-colour);
+  border: none;
+}
