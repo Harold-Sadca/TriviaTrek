@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import { combineAnswers, extractQuestions } from '../../utils/functions';
+import { extractQuestions } from '../../utils/functions';
 import { MouseEvent, useState } from 'react';
 import { setQuizzes } from '../../redux/features/quizzesSlice';
 import he from 'he';
@@ -30,7 +30,7 @@ function StartQuiz() {
       }
     });
     dispatch(setQuizzes(quizzes));
-    navigate('/check-answers');
+    navigate('/quiz-summary');
   };
 
   const handleChange = (
@@ -55,27 +55,23 @@ function StartQuiz() {
               <p>{he.decode(quiz.question)}</p>
               <p>{quiz.difficulty}</p>
               <p className='answers'>
-                {quiz.correct_answer &&
-                  combineAnswers(
-                    quiz.correct_answer,
-                    quiz.incorrect_answers
-                  ).map((answer) => {
-                    return (
-                      <button
-                        className={`btn-2 ${
-                          answersState[quiz.question] == answer
-                            ? 'btn-2-clicked'
-                            : ''
-                        }`}
-                        value={answer}
-                        onClick={(e) => {
-                          handleChange(e, quiz.question);
-                        }}
-                      >
-                        {answer}
-                      </button>
-                    );
-                  })}
+                {quiz.all_answers!.map((answer) => {
+                  return (
+                    <button
+                      className={`btn-2 ${
+                        answersState[quiz.question] == answer
+                          ? 'btn-2-clicked'
+                          : ''
+                      }`}
+                      value={answer}
+                      onClick={(e) => {
+                        handleChange(e, quiz.question);
+                      }}
+                    >
+                      {answer}
+                    </button>
+                  );
+                })}
               </p>
             </div>
           );

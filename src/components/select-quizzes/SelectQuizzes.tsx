@@ -8,12 +8,13 @@ import {
   difficultyLevel,
   quizTypes,
 } from '../../utils/variables';
-import { TypeQuiz } from '../../utils/types';
+import { TypeQuestion, TypeQuiz } from '../../utils/types';
 import '../../App.css';
 import './quizzes.css';
 import { getQuizzes } from '../../utils/apiService';
 import { useDispatch } from 'react-redux';
 import { setQuizzes } from '../../redux/features/quizzesSlice';
+import { combineAnswers } from '../../utils/functions';
 
 const initialState: TypeQuiz = {
   amount: 0,
@@ -44,7 +45,16 @@ function Quizzes() {
       : '';
     const type = selected.type ? '&type=' + selected.type : '';
     const url = `https://opentdb.com/api.php?amount=${amount}${category}${difficulty}${type}`;
-    const quizzes = await getQuizzes(url);
+    let quizzes = await getQuizzes(url);
+    quizzes = quizzes.map((quiz: TypeQuestion) => {
+      return {
+        ...quiz,
+        all_answers: combineAnswers(
+          quiz.correct_answer,
+          quiz.incorrect_answers
+        ),
+      };
+    });
     dispatch(setQuizzes(quizzes));
     navigate('/start-quiz');
   };

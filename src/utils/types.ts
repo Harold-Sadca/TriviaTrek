@@ -13,4 +13,5 @@ export interface TypeQuestion {
   question: string;
   type: string;
   answered_correctly?: boolean;
+  all_answers?: string[];
 }
