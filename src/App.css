@@ -46,7 +46,7 @@ h1{
   color: var(--tertiary-colour);
   background-color: transparent;
   font-weight: 500;
-  letter-spacing: 4px;
+  letter-spacing: 1px;
   font-family: sans-serif;
   text-decoration: none;
   border: 1px solid var(--tertiary-colour);

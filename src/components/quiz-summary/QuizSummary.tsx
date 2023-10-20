@@ -22,7 +22,7 @@ function QuizSummary() {
               key={idx}
             >
               <p>{he.decode(quiz.question)}</p>
-              <p>Correct Answer : {quiz.correct_answer}</p>
+              <p>Correct Answer : {he.decode(quiz.correct_answer)}</p>
             </div>
           );
         })}

@@ -68,7 +68,7 @@ function StartQuiz() {
                         handleChange(e, quiz.question);
                       }}
                     >
-                      {answer}
+                      {he.decode(answer)}
                     </button>
                   );
                 })}
